@@ -5,6 +5,7 @@ For items that pass the score threshold, this module:
 2. Feeds search results + item content to AI to generate grounded background knowledge
 """
 
+import asyncio
 import json
 import re
 import sys
@@ -35,6 +36,16 @@ class ContentEnricher:
         Args:
             items: Content items to enrich (modified in-place)
         """
+        sem = asyncio.Semaphore(5)
+
+        async def _do(item: ContentItem):
+            async with sem:
+                try:
+                    await self._enrich_item(item)
+                except Exception as e:
+                    print(f"Error enriching item {item.id}: {e}")
+            progress.advance(task)
+
         with Progress(
             SpinnerColumn(),
             TextColumn("[progress.description]{task.description}"),
@@ -43,13 +54,7 @@ class ContentEnricher:
             transient=True,
         ) as progress:
             task = progress.add_task("Enriching", total=len(items))
-
-            for item in items:
-                try:
-                    await self._enrich_item(item)
-                except Exception as e:
-                    print(f"Error enriching item {item.id}: {e}")
-                progress.advance(task)
+            await asyncio.gather(*[_do(item) for item in items])
 
     async def _web_search(self, query: str, max_results: int = 3) -> list:
         """Search the web for context via DuckDuckGo.

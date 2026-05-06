@@ -37,7 +37,22 @@ class ContentAnalyzer:
 
     async def analyze_batch(self, items: List[ContentItem]) -> List[ContentItem]:
         throttle_sec = self._get_throttle_sec()
-        analyzed_items = []
+        analyzed_items: List[ContentItem] = [None] * len(items)
+        sem = asyncio.Semaphore(5)
+
+        async def _do(idx: int, item: ContentItem):
+            async with sem:
+                try:
+                    await self._analyze_item(item)
+                except Exception as e:
+                    print(f"Error analyzing item {item.id}: {e}")
+                    item.ai_score = 0.0
+                    item.ai_reason = "Analysis failed"
+                    item.ai_summary = item.title
+                if throttle_sec > 0:
+                    await asyncio.sleep(throttle_sec)
+            analyzed_items[idx] = item
+            progress.advance(task)
 
         with Progress(
             SpinnerColumn(),
@@ -47,20 +62,7 @@ class ContentAnalyzer:
             transient=True,
         ) as progress:
             task = progress.add_task("Analyzing", total=len(items))
-
-            for index, item in enumerate(items):
-                try:
-                    await self._analyze_item(item)
-                    analyzed_items.append(item)
-                except Exception as e:
-                    print(f"Error analyzing item {item.id}: {e}")
-                    item.ai_score = 0.0
-                    item.ai_reason = "Analysis failed"
-                    item.ai_summary = item.title
-                    analyzed_items.append(item)
-                progress.advance(task)
-                if throttle_sec > 0 and index < len(items) - 1:
-                    await asyncio.sleep(throttle_sec)
+            await asyncio.gather(*[_do(i, item) for i, item in enumerate(items)])
 
         return analyzed_items
 
