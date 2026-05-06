@@ -6,6 +6,8 @@ on:
     paths:
       - 'docs/**'
   workflow_dispatch:
+  schedule:
+    - cron: '0 9 * * *'  # Trigger daily at 9:00 UTC to catch new posts
 
 permissions:
   pages: write
@@ -21,12 +23,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      - uses: actions/jekyll-build-pages@v1
+      - name: Build with Jekyll
+        uses: ruby/setup-ruby@v1
         with:
-          source: ./docs
-          destination: ./_site
-          future: true
-          verbose: true
+          ruby-version: '3.3'
+          bundler-cache: true
+          working-directory: ./docs
+      - name: Build site
+        run: |
+          cd docs
+          bundle exec jekyll build --future --destination ../_site
+        env:
+          JEKYLL_ENV: production
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./_site
