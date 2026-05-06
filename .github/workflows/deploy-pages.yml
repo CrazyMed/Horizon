@@ -33,10 +33,6 @@ jobs:
         run: |
           cd docs
           bundle exec jekyll build --future --destination ../_site
-          echo "--- _site contents ---"
-          find ../_site -name "*.html" -o -name "*.xml" | head -30
-          echo "--- _posts in source ---"
-          ls -la _posts/ 2>/dev/null || echo "No _posts dir"
         env:
           JEKYLL_ENV: production
       - uses: actions/upload-pages-artifact@v3
