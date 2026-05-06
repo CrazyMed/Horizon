@@ -5,413 +5,308 @@ date: 2026-05-06
 lang: en
 ---
 
-> From 48 items, 19 important content pieces were selected
+> From 29 items, 13 important content pieces were selected
 
 ---
 
-1. [Gemma 4 Multi-Token Prediction Draft Models Released for 2x Speedup](#item-1) ⭐️ 9.0/10
-2. [State Health Exchanges Leak Sensitive Data to Big Tech](#item-2) ⭐️ 9.0/10
-3. [SGLang v0.5.11 Boosts Inference with CUDA 13 and Speculative Decoding](#item-3) ⭐️ 8.0/10
-4. [DNSSEC Misconfiguration Causes Widespread .de Outage](#item-4) ⭐️ 8.0/10
-5. [Computer Use: 45x More Expensive Than Structured APIs](#item-5) ⭐️ 8.0/10
-6. [Anthropic Releases Financial Services Agent Templates](#item-6) ⭐️ 8.0/10
-7. [Google Chrome Silently Installs 4 GB AI Model on Devices](#item-7) ⭐️ 8.0/10
-8. [When Everyone Has AI and the Company Still Learns Nothing](#item-8) ⭐️ 8.0/10
-9. [IBM objected to Microsoft using Tab for dialog navigation](#item-9) ⭐️ 8.0/10
-10. [Zuckerberg Authorized Meta's Copyright Infringement for AI Training](#item-10) ⭐️ 8.0/10
-11. [Heretic 1.3: Reproducible Uncensoring with Benchmarking and VRAM Reduction](#item-11) ⭐️ 8.0/10
-12. [ProgramBench Tests AI Agents on Binary Reconstruction from Scratch](#item-12) ⭐️ 8.0/10
-13. [DeepSeek V4 Pro matches GPT-5.2 on FoodTruck Bench at 17x lower cost](#item-13) ⭐️ 8.0/10
-14. [Trump Administration Considers Pre-Release Review for AI Models](#item-14) ⭐️ 8.0/10
-15. [Image Models Drive 6.5x More AI App Downloads Than Chatbot Updates](#item-15) ⭐️ 8.0/10
-16. [GitHub Apologizes for Outages, Announces 30x Scaling Plan](#item-16) ⭐️ 8.0/10
-17. [UK Online Safety Act Age Checks Bypassed with Fake Beards](#item-17) ⭐️ 8.0/10
-18. [OpenAI's GPT-5.3 Instant Reduces Hallucinations by Up to 26.8%](#item-18) ⭐️ 8.0/10
-19. [Microsoft Edge Stores Passwords in Cleartext in Memory](#item-19) ⭐️ 8.0/10
+1. [DNSSEC Malfunction Causes Widespread .de Domain Outage](#item-1) ⭐️ 8.0/10
+2. [Book publishers sue Meta over AI&#8217;s &#8216;word-for-word&#8217; copying](#item-2) ⭐️ 8.0/10
+3. [Daemon Tools Backdoored in Monthlong Supply Chain Attack](#item-3) ⭐️ 8.0/10
+4. [Gemma 4 Gains Multi-Token Prediction for Faster Inference](#item-4) ⭐️ 7.0/10
+5. [Computer Use Costs 45x More Than Structured APIs](#item-5) ⭐️ 7.0/10
+6. [AI Agents Now Automate Cloudflare Account Creation and Domain Purchase](#item-6) ⭐️ 6.0/10
+7. [Developer Completes 10-Year UO Demo Server Reverse-Engineering with LLMs](#item-7) ⭐️ 6.0/10
+8. [YouTube RSS Feeds Remain Broken, Community Shares Workarounds](#item-8) ⭐️ 6.0/10
+9. [Vibe Coding and Agentic Engineering Are Converging](#item-9) ⭐️ 6.0/10
+10. [AI Agent Mona Runs Stockholm Cafe, Revealing Agent Limitations](#item-10) ⭐️ 6.0/10
+11. [Musk vs Altman: High-Stakes Trial Over OpenAI's Mission](#item-11) ⭐️ 6.0/10
+12. [Apple May Let Users Choose Third-Party AI Models](#item-12) ⭐️ 6.0/10
+13. [OpenAI's GPT-5.5 Instant Replaces GPT-3.5 as ChatGPT Default](#item-13) ⭐️ 6.0/10
 
 ---
 
 <a id="item-1"></a>
-## [Gemma 4 Multi-Token Prediction Draft Models Released for 2x Speedup](https://www.reddit.com/r/LocalLLaMA/comments/1t4jq6h/gemma_4_mtp_released/) ⭐️ 9.0/10
+## [DNSSEC Malfunction Causes Widespread .de Domain Outage](https://status.denic.de/pages/incident/592577eab611ce1e0d00046f/69fa60ef9d12f5057a974f38) ⭐️ 8.0/10
 
-Google has released multi-token prediction (MTP) draft models for Gemma 4 (31B, 26B-A4B, E4B, and E2B variants) on Hugging Face. These models enable up to 2x faster text generation through speculative decoding while guaranteeing identical quality to standard decoding. This release brings major efficiency gains to local and on-device AI applications, reducing latency without compromising accuracy. It also reinforces Google's commitment to open-source AI, offering developers a practical tool for more responsive and cost-effective inference. The MTP draft models are lightweight attachments; for example, the E2B draft model is only 78M parameters. They work by predicting multiple tokens ahead, which the target Gemma 4 model then verifies in parallel, achieving speedups up to 2x. Models are available on Hugging Face, and integration is expected in frameworks like llama.cpp and LM Studio.
+On May 5, 2026, Germany's country-code TLD operator DENIC published a malformed DNSSEC RRSIG (Resource Record Signature) over an NSEC3 record, causing all DNSSEC-validating resolvers to return SERVFAIL errors for every .de domain. Cloudflare temporarily disabled DNSSEC validation on its 1.1.1.1 resolver as a workaround, and DENIC has since re-signed the zone to resolve the incident. This incident demonstrates how a single cryptographic misconfiguration at a critical DNS operator can take down an entire country's internet presence—affecting approximately 17.7 million .de domains including major sites like bahn.de and spiegel.de. It highlights the centralization risk in DNSSEC deployment, where the failure of one Zone Signing Key can cascade into a massive outage. The malformed signature was specifically over an NSEC3 record that failed validation against ZSK keytag 33834. DNSViz visualizations show the validation failures across the .de zone. The intermittent behavior observed by some users is explained by anycast routing—some DNS servers received correct cached responses before the bad signature was published.
 
-reddit · r/LocalLLaMA · rerri · May 5, 16:01
+hackernews · warpspin · May 5, 20:16 · [Discussion](https://news.ycombinator.com/item?id=48027897)
 
-**Background**: Multi-token prediction (MTP) is a technique where a model predicts several future tokens at once, improving inference efficiency. Speculative decoding uses a small draft model to propose tokens, which a larger target model verifies in a single pass, ensuring the output distribution exactly matches that of the target model. Google's implementation extends Gemma 4 with draft models specifically trained for MTP, enabling fast, accurate inference on resource-constrained devices.
+**Background**: DNSSEC (Domain Name System Security Extensions) is a suite of specifications that authenticates DNS responses using public-key cryptography. When a DNS resolver validates DNSSEC records, it checks digital signatures (RRSIGs) on DNS records to verify their authenticity. NSEC3 is a protocol mechanism that provides authenticated denial of existence—proving that a domain name does not exist. DENIC eG, founded in 1996, is a non-profit cooperative that manages Germany's .de domain, serving approximately 17.7 million registered domains.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://grokipedia.com/page/Multi-token_prediction">Multi-token prediction</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Speculative_decoding">Speculative decoding</a></li>
+<li><a href="https://en.wikipedia.org/wiki/DENIC">DENIC - Wikipedia</a></li>
+<li><a href="https://cybernews.com/security/dnssec-failure-causes-german-internet-blackout/">Millions of .de websites are unreachable due to DNSSEC failure | Cybernews</a></li>
+<li><a href="https://blackfort-tec.de/en/insights/dnssec-denic-servfail-nsec3-de-zone">DNSSEC Failure in the .de Zone: SERVFAIL at bahn.de, spiegel.de and blackfort-tec.de | Blackfort Technology</a></li>
 
 </ul>
 </details>
 
-**Discussion**: The community reacted with strong enthusiasm, highlighting the impressive speedups and tiny draft model sizes (e.g., the 78M E2B variant). Users shared visual guides and discussed integration with tools like LM Studio and llama.cpp. Some noted that Gemma models already tend to generate outputs using fewer tokens, which further amplifies the speed benefits. Overall sentiment is highly positive, with few reservations.
+**Discussion**: The technical community quickly identified the root cause as a malformed NSEC3 RRSIG, with users confirming the issue via dig commands against various resolvers. Commenters praised Cloudflare's rapid response in disabling DNSSEC validation as a pragmatic workaround. Humorous remarks about DENIC staff attending a party were balanced with serious discussions about DNSSEC's single-point-of-failure risks. One commenter notably observed the absence of DNSSEC critics in the thread, highlighting the incident as a cautionary case study.
 
-**Tags**: `#multi-token-prediction`, `#gemma-4`, `#speculative-decoding`, `#llm-efficiency`, `#google`
+**Tags**: `#DNSSEC`, `#DNS`, `#infrastructure`, `#denic`, `#outage`
 
 ---
 
 <a id="item-2"></a>
-## [State Health Exchanges Leak Sensitive Data to Big Tech](https://www.bloomberg.com/features/2026-healthcare-advertising-trackers-privacy/) ⭐️ 9.0/10
+## [Book publishers sue Meta over AI&#8217;s &#8216;word-for-word&#8217; copying](https://www.theverge.com/tech/924230/meta-publishers-lawsuit-ai-copyright) ⭐️ 8.0/10
 
-A Bloomberg investigation found that nearly 20 US state health insurance exchanges embedded advertising tracking pixels, leaking race, gender, citizenship, zip codes, and other sensitive data of over 7 million users to Meta, TikTok, Google, and LinkedIn. This breach exposes highly sensitive health and demographic data, potentially violating HIPAA and state privacy laws, and eroding public trust; it also highlights the pervasive surveillance by ad-tech companies on government websites. Specific instances include Washington DC sending race and citizenship data to TikTok, Virginia transmitting zip codes to Meta for ad targeting, and New York sharing browsing history on family incarceration; other states leaked Medicaid application and non-citizen pregnancy benefit access to Google or Meta.
+Five major book publishers and one author filed a class action lawsuit against Meta alleging the company used copyrighted materials to train its Llama AI models in what they describe as one of the largest copyright infringements in history.
 
-telegram · zaihuapd · May 5, 03:06
+rss · The Verge - AI · May 5, 16:52
 
-**Background**: Advertising tracking pixels are tiny, invisible images or scripts embedded in web pages that collect user behavior for targeted advertising. State health insurance exchanges are government-run marketplaces created under the Affordable Care Act, where individuals apply for health plans and must provide sensitive personal and financial information, making the presence of such trackers a severe privacy violation.
-
-<details><summary>References</summary>
-<ul>
-<li><a href="https://kakunin-ip.click/zh/glossary/tracking-pixel">什么是追踪像素 - 工作原理、检测方法与防护措施 | IP确认酱</a></li>
-<li><a href="https://yaoweibin.cn/pixel-tracking-explained/">在不到5分钟内解释像素追踪 - 姚伟斌</a></li>
-
-</ul>
-</details>
-
-**Tags**: `#privacy`, `#data-leak`, `#healthcare`, `#big-tech`, `#advertising-trackers`
+**Tags**: `#AI copyright`, `#Meta Llama`, `#book publishers lawsuit`, `#intellectual property`, `#AI training data`
 
 ---
 
 <a id="item-3"></a>
-## [SGLang v0.5.11 Boosts Inference with CUDA 13 and Speculative Decoding](https://github.com/sgl-project/sglang/releases/tag/v0.5.11) ⭐️ 8.0/10
+## [Daemon Tools Backdoored in Monthlong Supply Chain Attack](https://arstechnica.com/security/2026/05/widely-used-daemon-tools-disk-app-backdoored-in-monthlong-supply-chain-attack/) ⭐️ 8.0/10
 
-SGLang v0.5.11 upgrades default CUDA to 13.0 and PyTorch to 2.11, enables speculative decoding V2 as default with overlap scheduling to reduce CPU overhead, adds decode-side radix cache for prefill/decode disaggregation, and introduces DFLASH kernel, FA3 community kernels, LoRA for DeepSeek-V3/Kimi-K2, and cookbook support for many new models including Gemma 4, GLM-5.1, and Qwen3.6. This release modernizes the inference stack with latest hardware support, reduces latency through default speculative decoding, and enables efficient disaggregated serving with radix cache, benefiting large-scale LLM deployments across text and diffusion models. Spec V2 overlap scheduling hides CPU overhead; decode radix cache recovers TTFT savings for shared prefixes; DFLASH kernel expanded to AMD ROCm; CP enhancements allow independent tuning of MoE and attention parallelism; FlashInfer CuteDSL MoE backend is provided for the FP4 path; new models are accompanied by cookbook recipes for tuned deployment.
+Daemon Tools, a widely-used disk imaging software application, was compromised in a supply-chain attack that lasted approximately one month. Users who downloaded or updated the software during this window may have been infected with a backdoor that allows attackers to gain unauthorized access to their systems. This incident is significant because supply-chain attacks exploit trusted relationships between software vendors and users, making defense particularly challenging. With Daemon Tools being a popular tool, the potential infection scope could be substantial, and the month-long attack window provides ample opportunity for widespread compromise. The backdoor appears to have been introduced through the software's update mechanism, allowing attackers to distribute malicious code to users automatically. Security researchers recommend that users immediately check their systems for signs of infection and consider reinstalling their operating systems if any suspicious activity is detected.
 
-github · Kangyan-Zhou · May 5, 21:28
+rss · Ars Technica - AI · May 5, 19:46
 
-**Background**: Speculative decoding accelerates LLM inference by using a draft model to propose multiple tokens verified by the target model in one pass. Prefill/decode disaggregation separates prompt processing (prefill) from token generation (decode) across instances for better resource use. RadixAttention in SGLang automatically reuses KV cache across requests, with radix cache storing shared prefixes as a tree for efficient lookup.
+**Background**: A supply-chain attack targets trusted third-party vendors or service providers to infiltrate their customers' systems, bypassing direct attack methods. Disk imaging software like Daemon Tools creates exact copies of hard drives, SSDs, or optical discs, requiring deep system access and high levels of privilege—making it an attractive target for attackers seeking to establish persistent footholds. These types of attacks have become increasingly common, as demonstrated by incidents like the SolarWinds breach and the Codecov compromise.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Speculative_decoding">Speculative decoding</a></li>
-<li><a href="https://www.lmsys.org/blog/2024-01-17-sglang/">Fast and Expressive LLM Inference with RadixAttention and SGLang - LMSYS Blog | LMSYS Org</a></li>
-<li><a href="https://bentoml.com/llm/inference-optimization/prefill-decode-disaggregation">Prefill-decode disaggregation | LLM Inference Handbook</a></li>
+<li><a href="https://www.cloudflare.com/learning/security/what-is-a-supply-chain-attack/">What is a supply chain attack? | Cloudflare</a></li>
+<li><a href="https://www.easeus.com/backup-recovery/disk-imaging.html">What is Disk Imaging? Free Disk Image Software Recommendation ...</a></li>
 
 </ul>
 </details>
 
-**Tags**: `#sglang`, `#inference`, `#cuda`, `#speculative-decoding`, `#model-serving`
+**Tags**: `#supply-chain attack`, `#malware`, `#software security`, `#disk imaging`, `#vulnerability disclosure`
 
 ---
 
 <a id="item-4"></a>
-## [DNSSEC Misconfiguration Causes Widespread .de Outage](https://dnssec-analyzer.verisignlabs.com/nic.de) ⭐️ 8.0/10
+## [Gemma 4 Gains Multi-Token Prediction for Faster Inference](https://blog.google/innovation-and-ai/technology/developers-tools/multi-token-prediction-gemma-4/) ⭐️ 7.0/10
 
-DENIC, the registry for .de, published a malformed RRSIG signature over an NSEC3 record that failed validation against ZSK keytag 33834, causing all DNSSEC-validating resolvers to return SERVFAIL for .de domains. The zone data itself was intact, and non-validating resolvers were unaffected. This incident demonstrates the fragility of DNSSEC's centralized trust model, where a single registry-level misconfiguration can take down all domains under a TLD for validating users, affecting millions of German sites. It reignites debates over DNSSEC's security trade-offs and reliability. The malformed RRSIG was on the NSEC3 record for a0d5d1p51kijsevll74k523htmq406bk.de, associated with keytag 33834. The outage was intermittent due to anycast, as some DENIC nameserver nodes served the bad signature while others did not. Only validating resolvers were affected.
+Google has implemented multi-token prediction speculative decoding for Gemma 4, using a smaller draft model to propose tokens that the main model verifies in parallel. This optimization accelerates LLM inference without quality degradation, making Gemma 4 more efficient for production deployments where speed and cost matter. The draft model generates multiple candidate tokens simultaneously, while the target model evaluates them in parallel—a process that exploits the asymmetry between fast proposal and slower verification. Community members note Gemma 4 31B struggles to fit alongside vision capabilities in 24GB VRAM, requiring additional GPU resources for optimal performance.
 
-hackernews · warpspin · May 5, 20:16 · [Discussion](https://news.ycombinator.com/item?id=48027897)
+hackernews · amrrs · May 5, 16:14 · [Discussion](https://news.ycombinator.com/item?id=48024540)
 
-**Background**: DNSSEC adds cryptographic signatures to DNS records, enabling resolvers to verify authenticity through a trust chain from the root zone to individual domains. DENIC, the .de registry, signs zone data with zone signing keys. A malformed RRSIG can cause validators to reject all records, effectively making domains unreachable for users behind those resolvers.
+**Background**: Speculative decoding pairs a small draft model with a larger target model to speed up token generation. The draft model proposes tokens quickly, then the target model verifies them in parallel, accepting correct predictions and rejecting incorrect ones. This approach has proven effective for reducing inference latency without compromising output quality.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/DNSSEC">DNSSEC</a></li>
-<li><a href="https://www.cloudflare.com/learning/dns/dnssec/how-dnssec-works/">How Does DNSSEC Work? | Cloudflare</a></li>
+<li><a href="https://bentoml.com/llm/inference-optimization/speculative-decoding">Speculative decoding | LLM Inference Handbook - bentoml.com</a></li>
+<li><a href="https://research.google/blog/looking-back-at-speculative-decoding/">Looking back at speculative decoding - Google Research</a></li>
+<li><a href="https://arxiv.org/abs/2404.19737">[2404.19737] Better & Faster Large Language Models via Multi-token Prediction</a></li>
 
 </ul>
 </details>
 
-**Discussion**: Comments quickly identified the malformed RRSIG and keytag, with some humor about a DENIC party. Broader debate referenced Thomas Ptacek's critique of DNSSEC and concerns over the centralized point of failure it introduces, making the decentralized DNS more fragile. Historical DNSSEC outage lists were also mentioned, highlighting a pattern of similar incidents.
+**Discussion**: The community is enthusiastic about speculative decoding, with one member calling it "amazingly clever" and noting the elegant use of parallel verification. Others appreciate the efficiency gains but raise practical concerns—particularly about fitting Gemma 4 31B with vision support into consumer-grade hardware, with one user mentioning they'd need another GPU or a hardware replacement for optimal performance.
 
-**Tags**: `#dnssec`, `#outage`, `#dns`, `#security`, `#infrastructure`
+**Tags**: `#inference-optimization`, `#speculative-decoding`, `#gemma`, `#machine-learning`, `#google-ai`
 
 ---
 
 <a id="item-5"></a>
-## [Computer Use: 45x More Expensive Than Structured APIs](https://reflex.dev/blog/computer-use-is-45x-more-expensive-than-structured-apis/) ⭐️ 8.0/10
+## [Computer Use Costs 45x More Than Structured APIs](https://reflex.dev/blog/computer-use-is-45x-more-expensive-than-structured-apis/) ⭐️ 7.0/10
 
-A cost analysis reveals that using AI agents with computer vision to navigate UIs costs approximately 45 times more than relying on structured API calls, prompting discussion on mitigation strategies and alternative approaches. This cost disparity could severely limit the scalability of vision-based AI agents in production, pushing developers toward more efficient methods like accessibility APIs or UI pre-mapping, and reshaping AI automation economics. The cost stems from high token consumption of processing multiple screenshots per action, while structured APIs return only necessary data. Mitigation includes using accessibility APIs that expose a semantic UI tree or mapping the UI once into an API-like interface.
+Reflex.dev published a benchmark analysis showing that AI computer use costs 45 times more than structured API calls on the same admin panel task. The computer use approach required 53 steps and 551k tokens, while the structured API approach only needed 8 calls and 12k tokens. This analysis provides concrete data for AI developers to make informed architectural decisions when building agents. For organizations deploying AI at scale, the 45x cost difference could translate to substantial operational savings if structured APIs can replace computer use in appropriate scenarios. The benchmark compared computer use (where AI agents navigate UIs visually) against auto-generated API endpoints performing the same workflow. Token efficiency differed dramatically: 551k tokens for computer use versus 12k tokens for structured APIs, directly impacting both latency and cost.
 
 hackernews · palashawas · May 5, 16:34 · [Discussion](https://news.ycombinator.com/item?id=48024859)
 
-**Background**: AI agents with 'computer use' capabilities (e.g., Anthropic's Claude, OpenAI's tools) interact with UIs by taking screenshots and simulating mouse and keyboard actions, consuming vision model tokens per step. Structured APIs return data in machine-readable formats with far fewer tokens. This cost comparison arises from the radical difference in token requirements.
+**Background**: Computer-using agents (CUAs) are AI systems that interact with applications by mimicking human actions like clicking, scrolling, and typing through screen analysis. Structured APIs provide direct programmatic access to application functionality without visual interface overhead. The benchmark was conducted on an admin panel, a common enterprise use case where both approaches could theoretically complete identical tasks.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://developers.openai.com/api/docs/guides/tools-computer-use">Computer use | OpenAI API</a></li>
-<li><a href="https://grokipedia.com/page/OS_AI_Computer_Use">OS AI Computer Use</a></li>
+<li><a href="https://reflex.dev/blog/computer-use-is-45x-more-expensive-than-structured-apis/">Computer use is 45x More Expensive Than Structured APIs</a></li>
+<li><a href="https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/the-future-of-ai-computer-use-agents-have-arrived/4401025">Computer Use Agents (CUAs) for Enhanced Automation</a></li>
+<li><a href="https://aitoolly.com/ai-news/article/2026-05-06-the-45x-cost-penalty-why-ai-vision-agents-struggle-against-structured-apis-in-new-benchmarks">AI Vision Agents vs APIs: A 45x Cost Difference Analysis</a></li>
 
 </ul>
 </details>
 
-**Discussion**: Community comments suggest practical fixes: using accessibility APIs to cut costs, pre-mapping UIs for repeatable workflows, and minimizing visual tooling. Some note that existing SaaS obfuscation can make agents even costlier. A few express skepticism about security and privacy risks of granting agents full computer access.
+**Discussion**: Community members offered diverse perspectives: some highlighted the irony of corporate SaaS apps already making navigation difficult for agents, while developer merlindru announced building an accessibility-based solution that exposes macOS functions through a CLI. Theptip argued computer use should be the last resort for internal apps, questioning why one would use it when MCP or CLI tools are available. RadiozRadioz suggested well-designed backends shouldn't require computer use at all.
 
-**Tags**: `#AI agents`, `#computer vision`, `#API economics`, `#cost analysis`, `#developer tools`
+**Tags**: `#ai-agents`, `#llm-costs`, `#api-design`, `#computer-use`, `#automation`
 
 ---
 
 <a id="item-6"></a>
-## [Anthropic Releases Financial Services Agent Templates](https://www.anthropic.com/news/finance-agents) ⭐️ 8.0/10
+## [AI Agents Now Automate Cloudflare Account Creation and Domain Purchase](https://blog.cloudflare.com/agents-stripe-projects/) ⭐️ 6.0/10
 
-Anthropic announced ten ready-to-run agent templates for financial services, deployable as plugins or cookbooks for tasks like pitch building, KYC screening, and reconciliation. This move intensifies the AI arms race in regulated finance, potentially accelerating automation but raising concerns over bias, regulatory risk, and market concentration. The templates do not grant agents control over lending or approval decisions, which may mitigate immediate risk but limits deployment scope; they are part of a broader push following a $1.5 billion joint venture with Wall Street firms.
+Cloudflare announced that AI agents can now automate account creation, domain purchases, and deployment through Stripe integration. This enables autonomous AI systems to provision cloud infrastructure, register domains, and deploy services without human intervention. 这一发展代表了AI智能体在云基础设施管理能力上的重大飞跃，但也引发了关于自动化钓鱼基础设施和欺诈操作的严重安全问题。高参与度（514分，288条评论）表明开发者社区对此是否是有用工具还是潜在安全威胁存在严重分歧。 The integration requires users to have an existing Stripe account, which typically requires identity verification and banking details for production transactions. Cloudflare's announcement lacks concrete practical use cases, with skeptics questioning who the target audience actually is.
 
-hackernews · louiereederson · May 5, 15:05 · [Discussion](https://news.ycombinator.com/item?id=48023533)
+hackernews · rolph · May 6, 03:10 · [Discussion](https://news.ycombinator.com/item?id=48031684)
 
-**Background**: Anthropic is an AI safety company known for its Claude models. Financial services involve sensitive data and strict regulations. Agent templates are pre-built workflows that help automate complex tasks, often leveraging large language models. Cookbooks are instructional guides, and plugins extend platform capabilities.
+**Background**: AI agents are autonomous programs that can observe their environment, make decisions, and take actions to achieve specific goals without constant human supervision. Cloudflare Workers is a serverless platform that allows developers to deploy applications globally on Cloudflare's edge network. Stripe is a payment processing company that also offers business formation services through Stripe Atlas.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://www.anthropic.com/news/finance-agents">Agents for financial services and insurance \ Anthropic</a></li>
-<li><a href="https://www.investmentnews.com/fintech/anthropic-rolls-out-financial-services-agents-as-arms-race-with-openai-heats-up/266445">Anthropic rolls out financial services agents as arms race ...</a></li>
+<li><a href="https://en.wikipedia.org/wiki/AI_agent">AI agent - Wikipedia</a></li>
+<li><a href="https://www.cloudflare.com/developer-platform/products/workers-ai/">Cloudflare Workers AI | Open-source AI inference | Cloudflare</a></li>
+<li><a href="https://www.digitalocean.com/resources/articles/types-of-ai-agents">7 Types of AI Agents to Automate Your Workflows in 2025 | DigitalOcean</a></li>
 
 </ul>
 </details>
 
-**Discussion**: Comments reflect skepticism about AI expertise in sensitive domains, concerns that templates are scattershot and could stifle startups, and reports of bias in Claude Opus 4.7; some question whether these tools are actually being used.
+**Discussion**: Community reaction is mixed, with significant skepticism about practical applications. One commenter noted that buying domains is not a daily task requiring automation, while others raised concerns about fraud applications like automated phishing infrastructure. However, some users pointed out that Stripe's identity verification requirements may limit abuse by spammers and scammers. The discussion highlights the tension between innovation and security in AI agent capabilities.
 
-**Tags**: `#ai`, `#finance`, `#agents`, `#anthropic`, `#bias`
+**Tags**: `#AI agents`, `#cloudflare`, `#automation`, `#domain registration`, `#developer tools`
 
 ---
 
 <a id="item-7"></a>
-## [Google Chrome Silently Installs 4 GB AI Model on Devices](https://www.thatprivacyguy.com/blog/chrome-silent-nano-install/) ⭐️ 8.0/10
+## [Developer Completes 10-Year UO Demo Server Reverse-Engineering with LLMs](https://draxinar.github.io/articles/2026-05-01-uodemo-reverse-engineering.html) ⭐️ 6.0/10
 
-Google Chrome has started silently downloading a 4 GB on-device AI model (Gemini Nano) as part of a recent update, without explicit user consent or notification. This silent installation consumes significant disk space and bandwidth, particularly affecting users with limited resources and IT administrators managing shared environments. It also raises privacy and consent concerns about auto-updating software. The model file is named weights.bin and stored in the OptGuideOnDeviceModel directory. It is the Gemini Nano model, with CPU and GPU variants of ~2.7 GiB and ~4.0 GiB respectively. Users can disable it via chrome://flags by turning off 'Enables optimization guide on device' and 'Prompt API for Gemini Nano'. Google has since published a help page for managing on-device AI models.
+A developer has completed a decade-long project to reverse-engineer a 1998 Ultima Online demo server, finally achieving the goal with recent advances in large language models. The developer is now seeking original server files from the community, specifically dynamic0.mul, regions.txt, and resbank.mul files from 1997-2003 servers. This project demonstrates how LLMs are becoming valuable tools for reverse engineering legacy code, potentially transforming software preservation efforts. For the Ultima Online community, recovering these original server files could enable historically accurate recreation of the game's early state, preserving an important piece of gaming history. The developer is specifically searching for dynamic0.mul/dynamic0.bkp (server savegames), regions.txt (spawn definitions), and resbank.mul (resource definitions) files. The LLM-assisted approach proved crucial in completing what had been an endless task for 10 years, with the developer noting it as 'insane how useful LLMs are' for decompilation projects.
 
-hackernews · john-doe · May 5, 07:34 · [Discussion](https://news.ycombinator.com/item?id=48019219)
+hackernews · notsentient · May 6, 06:31 · [Discussion](https://news.ycombinator.com/item?id=48032976)
 
-**Background**: Gemini Nano is an on-device large language model developed by Google, enabling AI tasks like text generation directly on the device without cloud processing. Chrome is integrating such models to offer features like the Prompt API for web developers. The file weights.bin contains the model's learned parameters. This move reflects a broader trend of browsers incorporating local AI to improve privacy and speed, but it also raises deployment and transparency challenges.
+**Background**: Ultima Online, released in 1997 by Origin Systems, was one of the earliest commercially successful MMORPGs, reaching 100,000 subscribers by December 1998 with players averaging 20 hours weekly. Community-driven UO emulators have sustained the game's legacy for decades, with private servers like UO Outlands maintaining over 2,500 concurrent players. Recent LLM research shows these models can rapidly analyze binary functions and assign meaningful names, significantly accelerating reverse engineering workflows.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://cybernews.com/security/google-chrome-ai-model-device-no-consent/">Guy finds Google Chrome is quietly installing a 4GB AI model on our devices</a></li>
-<li><a href="https://support.google.com/chrome/answer/16961953?hl=en">Manage on-device Generative AI models in Chrome - Google Chrome Help</a></li>
-<li><a href="https://developer.chrome.com/docs/ai/built-in">Built-in AI | AI on Chrome | Chrome for Developers</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Ultima_Online">Ultima Online - Wikipedia</a></li>
+<li><a href="https://blog.talosintelligence.com/using-llm-as-a-reverse-engineering-sidekick/">Using LLMs as a reverse engineering sidekick</a></li>
+<li><a href="https://github.com/albertan017/LLM4Decompile">GitHub - albertan017/LLM4Decompile: Reverse Engineering: Decompiling Binary Code with Large Language Models · GitHub</a></li>
 
 </ul>
 </details>
 
-**Discussion**: Community reactions are split. Some view it as a normal part of software updates, while others highlight severe practical impacts on shared IT systems (e.g., NFS home directories, lab machines) where repeated downloads cause storage bloat. Users have shared flags and scripts to disable the model, and there is call for a system-wide, single-copy installation to avoid redundancy.
+**Discussion**: Community members expressed strong nostalgic connections to Ultima Online, with one developer sharing their first programming achievement was building a website for a UO shard that ran for 20+ years. Multiple commenters highlighted the still-active UO community, noting UO Outlands has 2,500+ concurrent players in a harsh, ganking-enabled gameplay style reminiscent of original UO. Others emphasized how LLMs have become surprisingly effective tools for reverse engineering work.
 
-**Tags**: `#chrome`, `#ai`, `#privacy`, `#disk-usage`, `#software-updates`
+**Tags**: `#reverse-engineering`, `#game-server`, `#ultima-online`, `#llm-applications`, `#gaming-history`
 
 ---
 
 <a id="item-8"></a>
-## [When Everyone Has AI and the Company Still Learns Nothing](https://www.robert-glaser.de/when-everyone-has-ai-and-the-company-still-learns-nothing/) ⭐️ 8.0/10
+## [YouTube RSS Feeds Remain Broken, Community Shares Workarounds](https://openrss.org/blog/youtube-your-feeds-are-broken) ⭐️ 6.0/10
 
-Despite widespread individual adoption of AI coding tools by developers, companies fail to capture organizational learning because rigid processes and misaligned incentives prevent knowledge sharing, according to a critical analysis. This matters because AI's productivity gains remain isolated to individuals, failing to improve enterprise efficiency unless companies address systemic bottlenecks and reward collaborative improvement. AI accelerates code production, but downstream processes like testing and deployment scheduling are bottlenecks that worsen as output increases; developers lack recognition for sharing their AI productivity techniques.
+The OpenRSS blog has highlighted YouTube's broken RSS feed implementation, prompting community members to share practical workarounds. A notable solution involves replacing `channel_id` with `playlist_id` and changing the `UC` prefix to `UULF` to filter out YouTube Shorts from feeds. RSS订阅源为用户提供了算法推荐系统的替代方案，让用户能够自主控制内容获取方式。当这些订阅源不可靠时，依赖它们的高级用户和开发者必须投入大量精力维护解决方案，这增加了开放网络生态系统的使用门槛。 YouTube's single-page application architecture breaks RSS feed detection; hitting the browser refresh button after navigating to a channel's videos page forces a full page reload that includes the correct feed link. Additionally, YouTube's official Data API enforces strict daily quotas of 10,000 units per project, making RSS feeds an attractive alternative despite their limitations.
 
-hackernews · youngbrioche · May 5, 09:30 · [Discussion](https://news.ycombinator.com/item?id=48020063)
+hackernews · veeti · May 6, 01:15 · [Discussion](https://news.ycombinator.com/item?id=48030964)
 
-**Background**: Organizational learning is the process by which a company adapts and improves its collective knowledge. In software development, AI tools like GitHub Copilot can drastically speed up coding, but enterprises often have multi-month release cycles requiring extensive testing, change management, and manual approvals. The 'messy middle' refers to the operational gap between a working prototype and production deployment, where most process friction occurs.
+**Background**: RSS (Really Simple Syndication) is a web feed standard that allows users to subscribe to content updates from websites without visiting them directly. YouTube natively supports RSS feeds through its channel-based XML format, but the platform has made no effort to surface these feeds to users—the interface lacks any 'subscribe via RSS' button or visible feed icon. This contrasts with the platform's aggressive push of its recommendation algorithm and YouTube Shorts. For developers, the YouTube Data API v3 offers an alternative but comes with significant usage quotas that can be quickly exhausted by high-volume applications.
 
-**Discussion**: Community comments broadly agree that individual AI productivity gains are not translating to organizational improvement. They highlight that bureaucratic processes are the real bottleneck, and there is no incentive for developers to share AI techniques, leading to fragmented, self-interested adoption. Some express concern that AI is being used to extract more work without proper compensation.
+<details><summary>References</summary>
+<ul>
+<li><a href="https://developers.google.com/youtube/v3/determine_quota_cost">Quota Calculator | YouTube Data API | Google for Developers</a></li>
 
-**Tags**: `#AI`, `#enterprise`, `#software development`, `#organizational learning`, `#productivity`
+</ul>
+</details>
+
+**Discussion**: Community response reflects frustration mixed with practical problem-solving. Users appreciate the playlist_id trick for filtering Shorts, though one commenter humorously begged others not to alert Google to the fact that RSS feeds still exist, fearing complete removal. Developers shared real-world experiences maintaining YouTube RSS reader projects, describing the feed vanishing as a constant source of debugging pain. The discussion highlights the tension between platform interests and the open web community's desire for decentralized, user-controlled content consumption.
+
+**Tags**: `#rss`, `#youtube`, `#open-source`, `#developer-tools`, `#api-alternatives`
 
 ---
 
 <a id="item-9"></a>
-## [IBM objected to Microsoft using Tab for dialog navigation](https://devblogs.microsoft.com/oldnewthing/20260505-00/?p=112298) ⭐️ 8.0/10
+## [Vibe Coding and Agentic Engineering Are Converging](https://simonwillison.net/2026/May/6/vibe-coding-and-agentic-engineering/#atom-everything) ⭐️ 6.0/10
 
-A blog post reveals that IBM once objected to Microsoft using the Tab key to move between dialog fields, a decision that influenced early Windows UI conventions. This illustrates how corporate rivalries and legacy standards shaped modern interaction design, reminding us that even basic keyboard shortcuts were once contested. The story highlights that IBM had its own Tab usage on 3270 terminals, yet opposed Microsoft's implementation, possibly due to concerns over context-confusion between input and control characters.
+Simon Willison, who coined the term "vibe coding," admits on the Heavybit High Leverage podcast that the distinction between vibe coding and agentic engineering has begun to blur in his own practice. As AI coding agents like Claude Code have become increasingly reliable, he finds himself no longer reviewing every line of generated code even for production systems. This convergence highlights a growing tension in AI-assisted development: as AI tools become more reliable, experienced engineers face pressure to trust them without full review, potentially blurring ethical boundaries around code quality and accountability. The distinction between "higher quality stuff faster" and "lower quality stuff faster" hangs in the balance for professional software development. Willison maintains a clear stance: vibe coding is acceptable for personal tools where bugs only affect the user, but "grossly irresponsible" for software serving others. His key insight is that as reliability improves, the traditional practice of reviewing every line of code is giving way to a new model of trust in AI-generated code.
 
-hackernews · SeenNotHeard · May 5, 17:28 · [Discussion](https://news.ycombinator.com/item?id=48025687)
+rss · Simon Willison · May 6, 14:24
 
-**Background**: In early graphical user interfaces, keyboard navigation for dialogs was not standardized. The Tab key, originally for tabulation in text, was repurposed to move focus between controls. IBM, a major keyboard manufacturer and mainframe vendor, had established usage patterns that Microsoft’s approach could disrupt.
+**Background**: Vibe coding is a software development practice where developers describe tasks to large language models (LLMs) and receive generated code without necessarily examining or understanding the implementation details. Agentic engineering, by contrast, involves professional engineers using AI tools while maintaining full responsibility for security, performance, maintainability, and operations—the engineer still reviews code and applies their expertise. The tension between these approaches reflects broader questions about how AI should augment human software engineering.
 
-**Discussion**: Comments reflect a mix of sentiments: one shares a story of IBM’s excessive bureaucracy, another notes IBM’s own Tab usage on 3270 terminals, while others discuss the inconvenience of the Tab key being hijacked by OS/UI behavior and question IBM’s exact reasoning.
+<details><summary>References</summary>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Vibe_coding">Vibe coding - Wikipedia</a></li>
 
-**Tags**: `#history`, `#user-interface`, `#keyboard`, `#IBM`, `#Microsoft`
+</ul>
+</details>
+
+**Discussion**: No comment section is available for this post to evaluate community sentiment.
+
+**Tags**: `#AI coding`, `#vibe coding`, `#agentic engineering`, `#LLM tools`, `#software development`
 
 ---
 
 <a id="item-10"></a>
-## [Zuckerberg Authorized Meta's Copyright Infringement for AI Training](https://variety.com/2026/digital/news/meta-ai-mark-zuckerberg-copyright-infringement-lawsuit-publishers-scott-turow-1236738383/) ⭐️ 8.0/10
+## [AI Agent Mona Runs Stockholm Cafe, Revealing Agent Limitations](https://simonwillison.net/2026/May/5/our-ai-started-a-cafe-in-stockholm/#atom-everything) ⭐️ 6.0/10
 
-A lawsuit alleges that Mark Zuckerberg personally authorized and encouraged Meta to use copyrighted materials without permission for training AI models, involving large-scale data scraping that ignored robots.txt directives. This case could establish personal liability for corporate executives in copyright infringement, potentially reshaping how tech companies source training data and setting a critical legal precedent for the AI industry. The allegations involve scraping millions of copyrighted works with direct involvement from Zuckerberg; previous Anthropic case gave $1.5 billion settlement for 500,000 pirated works, implying potentially huge damages given statutory minimums of $750 per infringement.
+Andon Labs opened Andon Cafe in Stockholm's Vasastan district on April 18, 2026, with an AI agent named Mona managing operations while humans handle customer-facing tasks. The experiment revealed classic AI reasoning failures, including Mona ordering 120 eggs despite having no cooking equipment and 22.5 kg of canned tomatoes to solve the fresh tomato spoilage problem. This experiment highlights the gap between AI capabilities in controlled benchmarks and real-world business operations, demonstrating that current AI agents lack common sense reasoning about physical constraints. The ethical concerns raised about affecting uninvolved third parties (suppliers, government services) add an important dimension to the discussion about AI agent deployment. Mona was built using Claude and Gemini models and was given a corporate credit card and internet access. The cafe created a 'Hall of Shame' shelf displaying Mona's worst ordering decisions, including 6,000 napkins and 3,000 nitrile gloves. When making mistakes, Mona would send multiple 'EMERGENCY' emails to suppliers, and successfully applied for an outdoor seating permit using a self-generated sketch of a street she had never seen.
 
-hackernews · spankibalt · May 5, 18:04 · [Discussion](https://news.ycombinator.com/item?id=48026207)
+rss · Simon Willison · May 5, 22:14
 
-**Background**: AI training often relies on web-scraped data, sparking legal debates over copyright. The Anthropic settlement established that while training itself may be transformative, acquiring pirated works for that purpose is infringement. This case uniquely targets a CEO's personal authorization, challenging the corporate shield that typicallyprotects executives.
+**Background**: Andon Labs is a Y Combinator-backed startup that stress-tests AI agents in real-world scenarios to identify safety gaps. Their earlier experiment involved Andon Market in San Francisco, where another AI agent named Luna was given a 3-year retail lease. Simon Willison, the author of the analysis, argues that experiments affecting uninvolved people—such as wasting suppliers' time or police resources—raise ethical concerns that the AI community should address.
 
-**Discussion**: Commenters overwhelmingly support personal liability, sharing experiences of Meta ignoring robots.txt and straining servers. Many hope for severe punishment to deter future infringement and set a precedent that would even allow open sharing by others. Some criticize the typical corporate avoidance of personal accountability.
+<details><summary>References</summary>
+<ul>
+<li><a href="https://andonlabs.com/blog/ai-cafe-stockholm">Our AI started a cafe in Stockholm - Andon Labs</a></li>
+<li><a href="https://andonlabs.com/blog/andon-market-launch">We gave an AI a 3 year retail lease in SF and asked it to make a profit | Andon Labs</a></li>
 
-**Tags**: `#artificial-intelligence`, `#copyright-infringement`, `#legal-precedent`, `#meta`, `#data-scraping`
+</ul>
+</details>
+
+**Discussion**: The Hacker News discussion centered on the ethical implications of AI experiments that affect third parties. Many commenters agreed with Willison's stance that experiments should keep human operators in-the-loop for outbound actions. Others found the 'Hall of Shame' concept clever, while some debated whether the experiment provides net positive value to the AI safety community despite its ethical compromises.
+
+**Tags**: `#AI agents`, `#LLM applications`, `#automation experiments`, `#real-world AI testing`, `#AI limitations`
 
 ---
 
 <a id="item-11"></a>
-## [Heretic 1.3: Reproducible Uncensoring with Benchmarking and VRAM Reduction](https://www.reddit.com/r/LocalLLaMA/comments/1t4hwup/heretic_13_released_reproducible_models/) ⭐️ 8.0/10
+## [Musk vs Altman: High-Stakes Trial Over OpenAI's Mission](https://www.theverge.com/tech/917225/sam-altman-elon-musk-openai-lawsuit) ⭐️ 6.0/10
 
-Heretic 1.3 introduces reproducible model runs, an integrated benchmarking system, reduced peak VRAM usage, and broader model support. It captures full environment details like PyTorch version and GPU driver to ensure reproducibility. Reproducible decensoring fosters trust and scientific rigor in open-source AI, while the integrated benchmarks streamline evaluation of decensored models. These improvements accelerate community-driven innovation and adoption. The release overcomes reproducibility challenges by recording all tensor operation dependencies, including GPU and driver specifics. It reduces VRAM usage and expands model support, though some models like Kimi k2.5/k2.6 are reported not yet compatible.
+Elon Musk's lawsuit against OpenAI, Sam Altman, and Microsoft has gone to trial, with Musk accusing the company of abandoning its founding humanitarian mission in favor of profit maximization. The case centers on claims that OpenAI's shift from a nonprofit structure to a capped-profit model breached fiduciary duties and contractual obligations. This trial could fundamentally reshape OpenAI's corporate structure and set precedent for how AI companies balance commercial interests with public benefit obligations. The outcome may affect Microsoft's multi-billion dollar investment in OpenAI and influence future AI governance frameworks globally. Musk's claims include breach of contract, breach of fiduciary duty, false advertising, and unfair business practices. He alleges that Altman and OpenAI President Greg Brockman induced him to seed the nonprofit with the explicit understanding that any artificial general intelligence developed would remain open-source and humanitarian. Microsoft faces potential liability for aiding and abetting breach of charitable trust.
 
-reddit · r/LocalLLaMA · -p-e-w- · May 5, 14:57
+rss · The Verge - AI · May 6, 15:37
 
-**Background**: Heretic is an open-source tool for automatically removing censorship from large language models (LLMs), a process known as abliteration. LLMs often contain refusal patterns for sensitive topics, and Heretic aims to eliminate these while preserving intelligence. Reproducibility is critical to verify that decensoring works consistently across different systems.
+**Background**: OpenAI was founded in 2015 as a nonprofit research laboratory with the stated mission of ensuring artificial general intelligence benefits all of humanity. In 2019, OpenAI created a for-profit subsidiary (OpenAI LP) under a capped-profit model to attract external capital while limiting investor returns. In May 2025, OpenAI announced plans to transition its for-profit entity to a Public Benefit Corporation under nonprofit oversight. Musk was an early co-founder and donor but left the organization in 2018.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://github.com/p-e-w/heretic">GitHub - p-e-w/heretic: Fully automatic censorship removal for language models · GitHub</a></li>
-<li><a href="https://aimultiple.com/reproducible-ai">Reproducible AI: Why it Matters & How to Improve it</a></li>
+<li><a href="https://www.cnbc.com/2026/01/08/musk-openai-altman-lawsuit-trial.html">Musk, OpenAI lawyers trade barbs as lawsuit heads to trial</a></li>
+<li><a href="https://openai.com/index/evolving-our-structure/">Evolving OpenAI’s structure</a></li>
+<li><a href="https://economictimes.indiatimes.com/tech/technology/muskaltman-trial-opens-revisiting-openais-shift-from-nonprofit-to-for-profit/articleshow/130557201.cms">Revisiting OpenAI’s shift from nonprofit to for-profit</a></li>
 
 </ul>
 </details>
 
-**Discussion**: Community reception is overwhelmingly positive, with users calling Heretic the greatest OSS project for local LLMs. Discussions include questions about support for specific models like Kimi k2.5/k2.6 and upcoming MTP architecture, along with ongoing concerns about a competitor copying code.
+**Discussion**: The tech community is divided on this case. Supporters argue Musk is defending the original promise of open, beneficial AI against corporate capture. Critics suggest Musk's lawsuit is motivated by competitive interests, noting his own AI venture xAI. Legal experts are closely watching how courts might define fiduciary duties in the context of humanitarian AI missions and whether investors like Microsoft should have foreseen potential conflicts.
 
-**Tags**: `#LLM`, `#model-decensoring`, `#open-source`, `#benchmarking`, `#LocalLLaMA`
+**Tags**: `#AI governance`, `#OpenAI`, `#legal battle`, `#tech industry`, `#AI regulation`
 
 ---
 
 <a id="item-12"></a>
-## [ProgramBench Tests AI Agents on Binary Reconstruction from Scratch](https://www.reddit.com/gallery/1t4j4s9) ⭐️ 8.0/10
+## [Apple May Let Users Choose Third-Party AI Models](https://www.theverge.com/tech/924515/apple-intelligence-third-party-chatbot-extensions-ios-27) ⭐️ 6.0/10
 
-Facebook Research introduced ProgramBench, a formal benchmark of 200 tasks that challenges AI agents to rebuild binaries from scratch with no internet, decompilation, or structural hints, using only black-box behavioral tests. It provides a rigorous, cheat-proof evaluation of AI agents' independent software engineering capabilities, highlighting current limitations and guiding future improvements in agentic coding systems. The benchmark used 6M lines of behavioral tests filtered to the best, and all models achieved 0% fully resolved tasks; best almost-resolved rate was 95% test pass. It is open-source and installable via pip.
+Apple is reportedly planning to allow users to select their preferred third-party AI model for Apple Intelligence features in iOS 27, iPadOS 27, and macOS 27, according to Bloomberg's Mark Gurman. The update would enable third-party chatbots to power Apple Intelligence system-wide, potentially including models from providers other than Apple's current partner OpenAI. This represents a significant departure from Apple's traditionally closed ecosystem, which typically restricts users to Apple's own services and first-party integrations. If implemented, users would gain more flexibility in choosing AI providers, potentially increasing competition among AI companies and giving consumers greater control over their AI experience on Apple devices. The feature is expected to arrive this fall with the iOS 27, iPadOS 27, and macOS 27 updates, though iOS 27 remains far from release. The report is based on reliable Apple analyst Mark Gurman's sources, but the plans could still change before the official announcement. This follows Apple's existing integration of ChatGPT into Apple Intelligence, which launched as a first step toward third-party AI support.
 
-reddit · r/LocalLLaMA · klieret · May 5, 15:40 · [Discussion](https://www.reddit.com/r/LocalLLaMA/comments/1t4j4s9/programbench_can_we_really_rebuild_huge_binaries/)
+rss · The Verge - AI · May 5, 19:45
 
-**Background**: In computing, a benchmark is a standardized test to evaluate performance. ProgramBench evaluates AI agents on reconstructing software binaries from scratch, meaning the agent must generate code that replicates the behavior of a given executable without access to its source code or implementation hints. Testing is performed via black-box behavioral tests, which verify only the external behavior of the generated program, not its internal structure, unlike typical coding benchmarks that provide function signatures or partial code.
+**Background**: Apple Intelligence is a generative AI system developed by Apple, announced at the 2024 Worldwide Developers Conference and integrated into iOS 18, iPadOS 18, and macOS Sequoia. The system combines on-device and server processing to provide features like writing assistance, image generation, notification summaries, and AI-powered photo editing. Currently, Apple Intelligence includes integration with ChatGPT from OpenAI, and is free for users with supported devices including iPhone 15 Pro and newer, iPads with M1 chips or later, and Apple silicon Macs.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://programbench.com/">ProgramBench</a></li>
-<li><a href="https://benchlm.ai/benchmarks/programBench">ProgramBench Benchmark 2026: 9 model averages | BenchLM.ai</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Apple_Intelligence">Apple Intelligence</a></li>
+<li><a href="https://grokipedia.com/page/Apple_Intelligence">Apple Intelligence</a></li>
 
 </ul>
 </details>
 
-**Discussion**: Community reaction is mixed: some praise its rigor and potential for advancing AI coding, while others criticize its lack of real-world practicality, noting that even humans would struggle under the same restrictions. There is also interest in integrating it with custom harnesses and amusement at the website's vibecoded flaws.
-
-**Tags**: `#benchmarks`, `#code-generation`, `#AI-agents`, `#LLM-evaluation`, `#software-engineering`
+**Tags**: `#Apple`, `#iOS`, `#AI`, `#Apple Intelligence`, `#Chatbots`
 
 ---
 
 <a id="item-13"></a>
-## [DeepSeek V4 Pro matches GPT-5.2 on FoodTruck Bench at 17x lower cost](https://i.redd.it/fx89f3w5n9zg1.png) ⭐️ 8.0/10
+## [OpenAI's GPT-5.5 Instant Replaces GPT-3.5 as ChatGPT Default](https://www.theverge.com/ai-artificial-intelligence/924225/openai-chatgpt-default-model-gpt-5-5-instant) ⭐️ 6.0/10
 
-DeepSeek V4 Pro has become the first Chinese model to reach the frontier tier on FoodTruck Bench, a 30-day agentic simulation. It matched GPT-5.2's median outcome within 3% only ten weeks later, while costing ~17× less per API call. This result signals that the China–US frontier AI gap is closing rapidly, now measured in weeks rather than a year. The 17× cost efficiency could democratize access to top-tier agentic AI and shift market dynamics toward more affordable high-performance models. DeepSeek’s pricing is based on a promotional rate of $0.435/M input and $0.87/M output, but historically such promos become permanent. On consistency, DeepSeek outperformed Grok 4.3 with zero loans, 6× less food waste, and 30% more meals served, though Opus 4.6 still holds the highest peak performance.
+OpenAI has released GPT-5.5 Instant as the new default model for ChatGPT, replacing GPT-3.5. The company claims that based on internal evaluations, the new model produces 52.5% fewer hallucinated claims compared to previous versions, with improvements described as "significant" across factuality benchmarks. Hallucinations remain one of the most persistent and critical problems in large language models, frequently eroding user trust and limiting real-world deployment. A 52.5% reduction, if verified, would represent a meaningful step forward in AI reliability, potentially enabling wider adoption in high-stakes applications where accuracy is paramount. The improvement claims are based solely on OpenAI's own internal evaluations rather than independent third-party testing. No technical details have been disclosed about how the hallucination reduction was achieved, what methodologies were used to measure hallucinations, or how the 52.5% figure was calculated. The evaluation may have utilized OpenAI's SimpleQA benchmark, which measures factuality but only covers short-form responses.
 
-reddit · r/LocalLLaMA · Disastrous_Theme5906 · May 5, 06:51 · [Discussion](https://www.reddit.com/r/LocalLLaMA/comments/1t47qbw/deepseek_v4_pro_matches_gpt52_on_foodtruck_bench/)
+rss · The Verge - AI · May 5, 17:00
 
-**Background**: FoodTruck Bench is an agentic AI benchmark that simulates running a food truck for 30 days using 34 tools (location, pricing, inventory, staff, weather, events) with persistent memory and daily reflection. Agentic AI refers to autonomous systems that plan, use tools, and adapt to achieve goals in complex environments, evolving beyond static chatbots.
+**Background**: Hallucinations in LLMs refer to instances where models generate confident, plausible-sounding but factually incorrect or nonsensical outputs. This phenomenon poses significant challenges for AI deployment, as unchecked hallucinations can spread misinformation and erode public trust in AI systems. The AI research community has been actively investigating hallucination attribution frameworks and mitigation strategies, with recent surveys proposing method-oriented taxonomies to systematically address the problem. OpenAI previously introduced SimpleQA as a benchmark specifically designed to measure short-form factuality in frontier models.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://x.com/foodtruckbench/status/2051559134626218130">Leaderboard update on FoodTruck Bench, our agentic benchmark ...</a></li>
-<li><a href="https://aiproductivity.ai/news/gemma-4-31b-foodtruck-bench-results/">Gemma 4 31B Takes 3rd on FoodTruck Bench, Beating Larger ...</a></li>
-<li><a href="https://agentic.ai/what-is-agentic-ai">What Is Agentic AI? A Complete Guide for 2026</a></li>
+<li><a href="https://www.explosion.com/183466/openais-gpt-5-5-instant-replaces-gpt-3-5-as-chatgpt-default/">OpenAI's GPT-5.5 Instant Replaces GPT-3.5 as ChatGPT Default — Explosion</a></li>
+<li><a href="https://openai.com/index/introducing-simpleqa/">Introducing SimpleQA | OpenAI</a></li>
+<li><a href="https://arxiv.org/html/2512.02527v1">A Concise Review of Hallucinations in LLMs and their Mitigation</a></li>
 
 </ul>
 </details>
 
-**Discussion**: Commenters expressed surprise at Gemma 4 31B’s strong performance, questioned the absence of models like GPT-5.5 and Qwen3.6, and noted that DeepSeek’s cost advantage is based on a promotional rate. Some called for deeper benchmarks tracking effort and review budget, not just final outcomes.
-
-**Tags**: `#AI benchmarks`, `#large language models`, `#agentic AI`, `#cost efficiency`, `#DeepSeek`
-
----
-
-<a id="item-14"></a>
-## [Trump Administration Considers Pre-Release Review for AI Models](https://www.nytimes.com/2026/05/04/technology/trump-ai-models.html) ⭐️ 8.0/10
-
-The Trump administration is considering a pre-release review process for new AI models, marking a shift from its previous deregulatory approach, after Anthropic’s Mythos model raised security concerns. The White House plans to establish an AI task force with tech executives and government officials to develop the regulatory procedure. This policy shift could reshape AI development and release practices, as leading companies may need government approval before launching models, potentially slowing innovation but enhancing security oversight. It also highlights the growing tension between technological advancement and national security in the AI race with China. The proposed review would grant the U.S. government priority access to evaluate new AI models before public release, with a focus on cybersecurity risks. The policy discussions were prompted in part by Anthropic's Mythos model, which demonstrated strong capabilities in identifying software vulnerabilities, alarming officials. The White House Chief of Staff and Treasury Secretary have taken over AI policy formulation, signaling the seriousness of the issue.
-
-telegram · zaihuapd · May 5, 02:00
-
-**Background**: Anthropic's Mythos is a powerful AI model that has not been publicly released due to safety concerns, particularly its ability to discover software vulnerabilities (CVEs) that could be exploited. The Trump administration initially favored minimal AI regulation, but the emergence of highly capable models like Mythos has prompted reconsideration. Pre-release review is a mechanism where government bodies evaluate AI systems for potential risks before they become widely available, similar to processes in other sensitive technologies.
-
-<details><summary>References</summary>
-<ul>
-<li><a href="https://www.nytimes.com/2026/04/22/technology/anthropics-mythos-ai.html">Anthropic’s New Mythos A.I. Model Sets Off Global Alarms ...</a></li>
-<li><a href="https://www.scientificamerican.com/article/what-is-mythos-and-why-are-experts-worried-about-anthropics-ai-model/">What is Mythos, Anthropic’s unreleased AI model, and how ...</a></li>
-
-</ul>
-</details>
-
-**Tags**: `#AI regulation`, `#government policy`, `#AI safety`, `#Trump administration`, `#pre-release review`
-
----
-
-<a id="item-15"></a>
-## [Image Models Drive 6.5x More AI App Downloads Than Chatbot Updates](https://techcrunch.com/2026/05/04/image-ai-models-now-drive-app-growth-beating-chatbot-upgrades/) ⭐️ 8.0/10
-
-According to Appfigures, image AI model releases now generate 6.5 times more app downloads than chatbot text model updates. For instance, Google Gemini's Nano Banana prompted over 22 million downloads in 28 days, and ChatGPT's GPT-4o image model added over 12 million, both far exceeding their text-only counterparts. This reveals that visual AI features are far more compelling for user acquisition than text-based improvements, but monetization remains uneven. Only ChatGPT successfully converted the surge into significant revenue (around $70 million), while Google and Meta saw negligible income, highlighting a market gap. In the same period, ChatGPT’s image model drove approximately $70 million in consumer spending, whereas Google's Nano Banana brought in only about $181,000, and Meta AI's Vibes video feature generated no meaningful revenue, demonstrating that downloads do not guarantee monetization.
-
-telegram · zaihuapd · May 5, 09:49
-
-**Background**: GPT-4o image generation, launched by OpenAI, excels at text rendering and prompt following. Google's Nano Banana (Gemini 2.5 Flash Image) is designed for high-volume, conversational image editing. Meta AI's Vibes is a short-form AI video generator and feed, akin to TikTok for AI videos. These releases represent the industry's shift toward multimodal AI experiences.
-
-<details><summary>References</summary>
-<ul>
-<li><a href="https://openai.com/index/introducing-4o-image-generation/">Introducing 4o Image Generation | OpenAI</a></li>
-<li><a href="https://gemini.google/overview/image-generation/">Nano Banana 2 - Gemini AI image generator & photo editor</a></li>
-<li><a href="https://about.fb.com/news/2025/09/introducing-vibes-ai-videos/">Introducing Vibes: A New Way to Discover and Create AI Videos</a></li>
-
-</ul>
-</details>
-
-**Tags**: `#AI apps`, `#image generation`, `#app market`, `#monetization`, `#tech news`
-
----
-
-<a id="item-16"></a>
-## [GitHub Apologizes for Outages, Announces 30x Scaling Plan](https://github.blog/news-insights/company-news/an-update-on-github-availability/) ⭐️ 8.0/10
-
-GitHub CTO Vlad Fedorov apologized for two outages in April and revealed a 30x scaling initiative driven by AI agent workflows. Key changes include migrating performance-sensitive Ruby code to Go, offloading database workloads from MySQL, and moving from custom data centers to Azure and a multi-cloud architecture. This infrastructure overhaul aims to greatly enhance reliability and performance for the millions of developers who depend on GitHub daily. It also reflects a broader industry shift away from monolithic architectures and single-cloud lock-in toward microservices and multi-cloud resilience. The April 23 merge queue incident erroneously generated squash merges and reverted code across 658 repositories without data loss. The April 27 search outage stemmed from an Elasticsearch cluster overload, suspected to be an attack, but core Git operations remained unaffected.
-
-telegram · zaihuapd · May 5, 11:42
-
-**Background**: Elasticsearch is an open-source, distributed search and analytics engine built on Apache Lucene, commonly used for full-text search and log analysis. A merge queue is a CI/CD feature that automatically enqueues and tests pull requests in sequence to keep the main branch stable, especially useful for repositories with frequent merges.
-
-<details><summary>References</summary>
-<ul>
-<li><a href="https://docs.github.com/zh/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue">管理合并队列 - GitHub 文档</a></li>
-<li><a href="https://baike.baidu.com/item/Elasticsearch/3411206">Elasticsearch_百度百科 什么是 Elasticsearch？- Elasticsearch 引擎简介 - AWS Elasticsearch基础（一）：Elasticsearch简介-腾讯云开发者社区-腾讯... 什么是Elasticsearch？它与其他搜索引擎相比有什么优势？ Elasticsearch简述_elasticsearch是什么-CSDN博客</a></li>
-
-</ul>
-</details>
-
-**Tags**: `#GitHub`, `#scalability`, `#incident-report`, `#infrastructure`, `#architecture`
-
----
-
-<a id="item-17"></a>
-## [UK Online Safety Act Age Checks Bypassed with Fake Beards](https://www.theregister.com/2026/05/04/uk_online_safety_act_age_checks_subvert/) ⭐️ 8.0/10
-
-A survey by Internet Matters shows that 46% of children find age checks very easy to bypass, and 32% have successfully done so using simple tricks like drawing fake beards or entering false birthdates. This reveals a critical flaw in the enforcement of the Online Safety Act, undermining its goal of protecting children from harmful content and prompting urgent calls for design-level safety measures. The survey also found that 49% of children still encountered harmful content, and 17% of parents had actively helped their child bypass checks, highlighting the system's ineffectiveness.
-
-telegram · zaihuapd · May 5, 14:16
-
-**Background**: The UK Online Safety Act mandates age verification to restrict minors' access to harmful online content. Age estimation technologies, such as AI-based facial analysis, are often used but can be fooled by simple spoofing. This news highlights the gap between regulatory intent and real-world effectiveness, as children easily circumvent these checks with minimal effort.
-
-**Tags**: `#age verification`, `#online safety`, `#regulation`, `#security`, `#children`
-
----
-
-<a id="item-18"></a>
-## [OpenAI's GPT-5.3 Instant Reduces Hallucinations by Up to 26.8%](https://t.me/zaihuapd/41231) ⭐️ 8.0/10
-
-OpenAI released GPT-5.3 Instant, an update to ChatGPT's conversation model that reduces hallucination rates by up to 26.8% in high-risk domains when using web search, alongside improvements in refusal handling and search quality. This update significantly enhances AI reliability in critical fields like medicine, law, and finance, reducing factual errors and making the model safer for professional use. Internal tests show a 26.8% hallucination drop with web search and 19.7% without; user feedback metrics show 22.5% and 9.6% improvements, respectively. The model is available to all ChatGPT users immediately.
-
-telegram · zaihuapd · May 5, 17:06
-
-**Background**: AI hallucination refers to a model generating plausible but factually incorrect text, a common issue in large language models like GPT. High-risk domains such as healthcare, law, and finance demand high factual accuracy. OpenAI has been working to reduce hallucinations through techniques like improved training and external knowledge retrieval, such as web search queries. This release integrates those improvements into a smaller, faster version called Instant.
-
-**Tags**: `#OpenAI`, `#GPT-5.3`, `#AI hallucination`, `#language models`, `#AI safety`
-
----
-
-<a id="item-19"></a>
-## [Microsoft Edge Stores Passwords in Cleartext in Memory](https://cybernews.com/security/microsoft-edge-loads-cleartext-passwords-to-memory/) ⭐️ 8.0/10
-
-Security researcher Tom Jøran Sønstebyseter Rønning discovered that Microsoft Edge loads all saved passwords into memory in cleartext at startup and keeps them decrypted throughout the session, unlike other Chromium browsers such as Chrome which use application-bound encryption and decrypt passwords only when needed. This design flaw exposes credentials even if the user never visits saved sites, allowing attackers with administrator privileges to extract passwords from Edge's process memory, including passwords of other logged-in users on terminal servers. It undermines the security model in multi-user environments and highlights a concerning 'by design' response from Microsoft. The vulnerability affects all saved passwords in Edge; the cleartext remains accessible throughout the browser session. By contrast, Google Chrome employs application-bound encryption, tying decryption keys to the specific application and decrypting credentials only on-demand. Microsoft has acknowledged the behavior and stated it is intentional, offering no immediate fix.
-
-telegram · zaihuapd · May 5, 23:31
-
-**Background**: Application-Bound Encryption (ABE) is a security mechanism that ties encryption keys to a specific application, preventing other processes from decrypting data. Chromium browsers, including Edge and Chrome, can implement ABE to protect saved passwords. Chrome uses ABE by default, while Edge currently lacks this enforcement, instead loading all passwords into memory in cleartext. This difference means Edge is more vulnerable to credential theft through memory scraping.
-
-<details><summary>References</summary>
-<ul>
-<li><a href="https://www.anoopcnair.com/application-bound-encryption-for-ms-edge-intune/">Enforce Application Bound Encryption For MS Edge Browser To</a></li>
-<li><a href="https://www.anoopcnair.com/application-bound-encryption-in-ms-edge-browser/">Enable Or Disable Application Bound Encryption Policy In MS</a></li>
-
-</ul>
-</details>
-
-**Tags**: `#security`, `#Microsoft Edge`, `#passwords`, `#vulnerability`, `#Chromium`
+**Tags**: `#LLM`, `#AI`, `#Hallucinations`, `#OpenAI`, `#GPT-5.5`
 
 ---
