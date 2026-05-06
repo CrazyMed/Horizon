@@ -25,7 +25,7 @@ jobs:
         with:
           source: ./docs
           destination: ./_site
-          config_file: ./docs/_config.yml
+          future: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./_site
