@@ -3,6 +3,7 @@ title: Horizon Daily
 description: AI-curated daily digest of tech and research news
 baseurl: "/Horizon" # the subpath of your site, e.g. /blog
 url: "https://crazymed.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+repository: "CrazyMed/Horizon"
 
 # Build settings
 markdown: kramdown
