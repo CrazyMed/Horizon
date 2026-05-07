@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Horizon Summary: 2026-05-06 (ZH)"
+title: "Horizon 每日速递: 2026-05-06"
 date: 2026-05-06
 lang: zh
 ---
