@@ -1,6 +1,6 @@
 theme: jekyll-theme-cayman
-title: Horizon Daily
-description: AI-curated daily digest of tech and research news
+title: Horizon 每日速递
+description: AI 驱动的科技与研究资讯每日精选
 baseurl: "/Horizon" # the subpath of your site, e.g. /blog
 url: "https://crazymed.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 repository: "CrazyMed/Horizon"
