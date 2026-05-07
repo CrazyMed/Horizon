@@ -1,7 +1,14 @@
-"""Reddit scraper implementation."""
+"""Reddit scraper implementation.
+
+Supports two backends:
+- "direct": Reddit public JSON API (may return 403 from CN IPs)
+- "composio": Via Composio MCP (OAuth-authenticated, bypasses IP blocks)
+"""
 
 import asyncio
+import json
 import logging
+import os
 import re
 from datetime import datetime, timezone
 from typing import Any, List, Optional
@@ -35,6 +42,20 @@ class RedditScraper(BaseScraper):
         super().__init__(config.model_dump(), http_client)
         self.reddit_config = config
         self._comment_semaphore = asyncio.Semaphore(MAX_COMMENT_CONCURRENCY)
+        self._backend = config.backend
+
+        # Composio setup
+        if self._backend == "composio":
+            key_env = config.composio_consumer_key_env
+            self._composio_key = os.getenv(key_env, "")
+            if not self._composio_key:
+                logger.warning(
+                    "Composio backend selected but env var %s is not set, falling back to direct",
+                    key_env,
+                )
+                self._backend = "direct"
+            self._composio_url = config.composio_mcp_url
+            self._composio_req_id = 0
 
     async def fetch(self, since: datetime) -> List[ContentItem]:
         if not self.config.get("enabled", True):
@@ -61,6 +82,20 @@ class RedditScraper(BaseScraper):
         return items
 
     async def _fetch_subreddit(self, cfg: RedditSubredditConfig, since: datetime) -> List[ContentItem]:
+        if self._backend == "composio":
+            posts = await self._fetch_subreddit_composio(cfg)
+        else:
+            posts = await self._fetch_subreddit_direct(cfg)
+
+        if not posts:
+            return []
+
+        return await self._process_posts(
+            posts, since, "subreddit", cfg.subreddit, cfg.min_score
+        )
+
+    async def _fetch_subreddit_direct(self, cfg: RedditSubredditConfig) -> Optional[List[dict]]:
+        """Fetch subreddit posts via Reddit public API."""
         params = {"limit": min(cfg.fetch_limit, 100), "raw_json": 1}
         if cfg.sort in ("top", "controversial"):
             params["t"] = cfg.time_filter
@@ -68,15 +103,37 @@ class RedditScraper(BaseScraper):
         url = f"{REDDIT_BASE}/r/{cfg.subreddit}/{cfg.sort}.json"
         data = await self._reddit_get(url, params)
         if not data:
-            return []
+            return None
 
-        posts = [child["data"] for child in data.get("data", {}).get("children", [])
-                 if child.get("kind") == "t3"]
-        return await self._process_posts(
-            posts, since, "subreddit", cfg.subreddit, cfg.min_score
-        )
+        return [child["data"] for child in data.get("data", {}).get("children", [])
+                if child.get("kind") == "t3"]
+
+    async def _fetch_subreddit_composio(self, cfg: RedditSubredditConfig) -> Optional[List[dict]]:
+        """Fetch subreddit posts via Composio MCP."""
+        result = await self._composio_call("COMPOSIO_MULTI_EXECUTE_TOOL", {
+            "tools": [{
+                "tool_slug": "REDDIT_RETRIEVE_REDDIT_POST",
+                "arguments": {
+                    "subreddit": cfg.subreddit,
+                    "sort": cfg.sort,
+                    "max_results": min(cfg.fetch_limit, 100),
+                }
+            }]
+        })
+        if not result:
+            return None
+
+        # Navigate: data.results[0].response.data.data.children
+        try:
+            children = result["results"][0]["response"]["data"]["data"]["children"]
+            posts = [child["data"] for child in children if child.get("kind") == "t3"]
+            return posts
+        except (KeyError, TypeError, IndexError) as e:
+            logger.warning("Failed to parse Composio Reddit response for r/%s: %s", cfg.subreddit, e)
+            return None
 
     async def _fetch_user(self, cfg: RedditUserConfig, since: datetime) -> List[ContentItem]:
+        # User endpoint: only direct API (Composio doesn't have a user posts tool)
         params = {"limit": min(cfg.fetch_limit, 100), "sort": cfg.sort, "raw_json": 1}
         url = f"{REDDIT_BASE}/user/{cfg.username}/submitted.json"
         data = await self._reddit_get(url, params)
@@ -134,7 +191,14 @@ class RedditScraper(BaseScraper):
         return []
 
     async def _fetch_comments(self, subreddit: str, post_id: str) -> List[dict]:
+        """Fetch comments — always uses direct API.
+
+        Composio saves large comment responses to sandbox files (preview-only),
+        so we keep direct API for comments. 403 from CN IPs is handled gracefully.
+        """
         fetch_limit = self.reddit_config.fetch_comments
+
+        # Direct API
         url = f"{REDDIT_BASE}/r/{subreddit}/comments/{post_id}.json"
         params = {"limit": fetch_limit, "depth": 1, "sort": "top", "raw_json": 1}
 
@@ -206,6 +270,62 @@ class RedditScraper(BaseScraper):
                 "discussion_url": discussion_url,
             },
         )
+
+    # ── Composio MCP transport ──────────────────────────────────────
+
+    async def _composio_call(self, tool_name: str, arguments: dict) -> Optional[dict]:
+        """Call a Composio MCP meta-tool via HTTP POST + SSE response.
+
+        Returns the parsed JSON content from the first SSE data event, or None on failure.
+        """
+        self._composio_req_id += 1
+        req_id = self._composio_req_id
+
+        payload = {
+            "jsonrpc": "2.0",
+            "id": req_id,
+            "method": "tools/call",
+            "params": {"name": tool_name, "arguments": arguments},
+        }
+        headers = {
+            "Content-Type": "application/json",
+            "x-consumer-api-key": self._composio_key,
+            "Accept": "application/json, text/event-stream",
+        }
+
+        try:
+            resp = await self.client.post(
+                self._composio_url, json=payload, headers=headers, timeout=120
+            )
+            # Composio returns SSE; parse the first meaningful data: line
+            for line in resp.text.split("\n"):
+                line = line.strip()
+                if not line.startswith("data: "):
+                    continue
+                payload_text = line[6:]
+                if not payload_text:
+                    continue
+                try:
+                    envelope = json.loads(payload_text)
+                    content_list = envelope.get("result", {}).get("content", [])
+                    for block in content_list:
+                        if block.get("type") == "text":
+                            inner = json.loads(block["text"])
+                            if inner.get("successful"):
+                                return inner.get("data")
+                            else:
+                                err = inner.get("error", "")
+                                logger.warning("Composio %s failed: %s", tool_name, err)
+                                return None
+                except (json.JSONDecodeError, KeyError):
+                    continue
+            logger.warning("Composio %s: no valid SSE data received (req_id=%d)", tool_name, req_id)
+            return None
+        except httpx.HTTPError as e:
+            logger.warning("Composio MCP request failed: %s", e)
+            return None
+
+    # ── Direct Reddit API transport ─────────────────────────────────
 
     async def _reddit_get(self, url: str, params: dict) -> Optional[Any]:
         try:

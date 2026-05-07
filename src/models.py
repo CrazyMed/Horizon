@@ -111,6 +111,9 @@ class RedditUserConfig(BaseModel):
 class RedditConfig(BaseModel):
     """Reddit source configuration."""
     enabled: bool = True
+    backend: str = "direct"    # "direct" (public API, may 403 in CN) or "composio" (via Composio MCP)
+    composio_mcp_url: str = "https://connect.composio.dev/mcp"
+    composio_consumer_key_env: str = "COMPOSIO_CONSUMER_KEY"  # env var name for ck_ key
     subreddits: List[RedditSubredditConfig] = Field(default_factory=list)
     users: List[RedditUserConfig] = Field(default_factory=list)
     fetch_comments: int = 5     # top comments per post, 0 to disable
