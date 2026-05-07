@@ -86,11 +86,15 @@ class DailySummarizer:
         labels = LABELS.get(language, LABELS["en"])
 
         if not items:
-            return self._generate_empty_summary(date, total_fetched, labels)
+            return self._generate_empty_summary(date, total_fetched, labels, language)
 
+        if language == "zh":
+            count_line = f"> 从 {total_fetched} 条内容中筛选出 {len(items)} 条重要资讯"
+        else:
+            count_line = f"> From {total_fetched} items, {len(items)} important content pieces were selected"
         header = (
             f"# {labels['header']} - {date}\n\n"
-            f"> From {total_fetched} items, {len(items)} important content pieces were selected\n\n"
+            f"{count_line}\n\n"
             "---\n\n"
         )
 
@@ -119,7 +123,7 @@ class DailySummarizer:
         """Generate a compact overview for multi-message webhook delivery."""
         labels = LABELS.get(language, LABELS["en"])
         if not items:
-            return self._generate_empty_summary(date, total_fetched, labels)
+            return self._generate_empty_summary(date, total_fetched, labels, language)
 
         if language == "zh":
             header = (
@@ -194,7 +198,10 @@ class DailySummarizer:
             source_parts.append(item.author or "unknown")
         if item.published_at:
             day = item.published_at.strftime("%d").lstrip("0")
-            source_parts.append(item.published_at.strftime(f"%b {day}, %H:%M"))
+            if language == "zh":
+                source_parts.append(item.published_at.strftime(f"%m月{day}日 %H:%M"))
+            else:
+                source_parts.append(item.published_at.strftime(f"%b {day}, %H:%M"))
         source_line = " \u00b7 ".join(source_parts)  # ·
 
         discussion_url = meta.get("discussion_url")
@@ -238,10 +245,14 @@ class DailySummarizer:
 
         return "\n".join(lines) + "\n\n"
 
-    def _generate_empty_summary(self, date: str, total_fetched: int, labels: dict) -> str:
+    def _generate_empty_summary(self, date: str, total_fetched: int, labels: dict, language: str = "en") -> str:
         """Generate summary when no high-scoring items were found."""
+        if language == "zh":
+            count_line = f"> 分析了 {total_fetched} 条内容，但没有达到重要性阈值的条目。"
+        else:
+            count_line = f"> Analyzed {total_fetched} items, but none met the importance threshold."
         return (
             f"# {labels['header']} - {date}\n\n"
-            f"> Analyzed {total_fetched} items, but none met the importance threshold.\n\n"
+            f"{count_line}\n\n"
             + labels["empty_body"]
         )
