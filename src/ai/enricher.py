@@ -43,7 +43,9 @@ class ContentEnricher:
                 try:
                     await self._enrich_item(item)
                 except Exception as e:
-                    print(f"Error enriching item {item.id}: {e}")
+                    # @retry exhausted — do lightweight translation fallback
+                    print(f"Error enriching item {item.id} after retries: {e}")
+                    await self._translation_fallback(item)
             progress.advance(task)
 
         with Progress(
@@ -182,11 +184,8 @@ class ContentEnricher:
         # Parse JSON response with robust fallback
         result = self._parse_json_response(response)
         if result is None:
-            # Enrichment JSON parse failed — do a lightweight translation fallback
-            # so the Chinese summary doesn't end up with raw English.
-            print(f"Warning: could not parse enrichment response for {item.id}, applying translation fallback")
-            await self._translation_fallback(item)
-            return
+            # Raise so @retry kicks in — a fresh AI call may return valid JSON
+            raise ValueError(f"Could not parse enrichment response for {item.id}")
 
         # Combine structured sub-fields into per-language detailed_summary
         for lang in ("en", "zh"):
