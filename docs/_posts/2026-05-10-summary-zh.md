@@ -11,7 +11,7 @@ lang: zh
 
 1. [菲尔兹奖得主高尔斯测试 ChatGPT 5.5 Pro 研究级数学问题](#item-1) ⭐️ 8.0/10
 2. [Bun 实验性 Rust 重写版本在 Linux 上达到 99.8%测试兼容性](#item-2) ⭐️ 7.0/10
-3. [LLMs corrupt your documents when you delegate](#item-3) ⭐️ 7.0/10
+3. [LLM 重复处理会导致文档质量退化](#item-3) ⭐️ 7.0/10
 4. [欧盟将 VPN 定性为年龄验证法规的“漏洞”](#item-4) ⭐️ 7.0/10
 5. [瑞士互联网档案馆作为独立节点正式启动](#item-5) ⭐️ 6.0/10
 6. [Zed Editor 发布主题构建器支持自定义编辑器主题](#item-6) ⭐️ 6.0/10
@@ -71,9 +71,9 @@ hackernews · heldrida · 05月9日 10:12 · [社区讨论](https://news.ycombin
 ---
 
 <a id="item-3"></a>
-## [LLMs corrupt your documents when you delegate](https://arxiv.org/abs/2604.15597) ⭐️ 7.0/10
+## [LLM 重复处理会导致文档质量退化](https://arxiv.org/abs/2604.15597) ⭐️ 7.0/10
 
-Microsoft research paper demonstrates that repeated LLM processing of documents causes compounding quality degradation, analogous to JPEG compression artifacts, with the community offering valuable insights on implications and limitations of the study.
+微软研究院发表论文，证明 LLM 对文档的重复处理会导致累积质量退化，类似于 JPEG 压缩伪影效应。社区围绕这一研究的意义和局限性展开了深入讨论，提供了有价值的见解。
 
 hackernews · rbanffy · 05月9日 08:44 · [社区讨论](https://news.ycombinator.com/item?id=48073246)
 

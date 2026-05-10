@@ -182,9 +182,10 @@ class ContentEnricher:
         # Parse JSON response with robust fallback
         result = self._parse_json_response(response)
         if result is None:
-            # Gracefully degrade: skip enrichment instead of raising
-            # (raising would trigger retries that won't help with a parse error)
-            print(f"Warning: could not parse enrichment response for {item.id}, skipping enrichment")
+            # Enrichment JSON parse failed — do a lightweight translation fallback
+            # so the Chinese summary doesn't end up with raw English.
+            print(f"Warning: could not parse enrichment response for {item.id}, applying translation fallback")
+            await self._translation_fallback(item)
             return
 
         # Combine structured sub-fields into per-language detailed_summary
@@ -223,3 +224,38 @@ class ContentEnricher:
         item.metadata["detailed_summary"] = item.metadata.get("detailed_summary_en", "")
         item.metadata["background"] = item.metadata.get("background_en", "")
         item.metadata["community_discussion"] = item.metadata.get("community_discussion_en", "")
+
+    async def _translation_fallback(self, item: ContentItem) -> None:
+        """Lightweight fallback: translate title + summary to Chinese when enrichment fails.
+
+        This prevents raw English from leaking into the Chinese summary output.
+        Uses a single AI call with a simple JSON response format.
+        """
+        title_en = item.title or ""
+        summary_en = item.ai_summary or ""
+        if not title_en and not summary_en:
+            return
+
+        prompt = (
+            "Translate the following English tech news title and summary into Chinese. "
+            "Return ONLY a JSON object with two keys: \"title_zh\" and \"summary_zh\".\n\n"
+            f"Title: {title_en}\n"
+            f"Summary: {summary_en}"
+        )
+        try:
+            resp = await self.client.complete(
+                system="You are a concise tech news translator. Output valid JSON only.",
+                user=prompt,
+                temperature=0.3,
+            )
+            parsed = self._parse_json_response(resp)
+            if parsed:
+                if parsed.get("title_zh"):
+                    item.metadata["title_zh"] = str(parsed["title_zh"])
+                if parsed.get("summary_zh"):
+                    item.metadata["detailed_summary_zh"] = str(parsed["summary_zh"])
+                print(f"  Translation fallback OK for {item.id}")
+            else:
+                print(f"  Translation fallback parse failed for {item.id}, raw response: {resp[:200]}")
+        except Exception as e:
+            print(f"  Translation fallback error for {item.id}: {e}")
